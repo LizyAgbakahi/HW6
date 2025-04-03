@@ -110,12 +110,30 @@ public class ProblemSolutions {
      */
 
     public static ArrayList<String> showDuplicates(ArrayList<String> input) {
+        // Sort the input list to bring duplicates together
+        Collections.sort(input);
 
-        //
-        //  YOUR CODE GOES HERE
-        //
-        return new ArrayList<>();  // Make sure result is sorted in ascending order
+        // Store unique duplicates in a new list
+        ArrayList<String> duplicates = new ArrayList<String>();
 
+        int i = 0;
+        while (i < input.size() - 1) {
+            // If current string matches the next one, it is a duplicate
+            if (input.get(i).equals(input.get(i + 1))) {
+                // Store the duplicate string
+                duplicates.add(input.get(i));
+
+                // Skip the consecutive occurrences of the duplicate string
+                while (i < input.size() - 1 && input.get(i).equals(input.get(i + 1))) {
+                    i++;
+                }
+            }
+            // Move to the next element
+            i++;
+        }
+
+        // Return the sorted list of unique duplicates
+        return duplicates;
     }
 
 
