@@ -64,12 +64,32 @@ public class ProblemSolutions {
      */
 
   public static int lastBoulder(int[] boulders) {
+      // Create a max priority queue to efficiently access the heaviest boulder
+      PriorityQueue<Integer> boulderWeights = new PriorityQueue<Integer>(Collections.reverseOrder());
 
-      //
-      // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME / SECTION # ABOVE
-      //
-      return -1;
+      // Add all boulder weights to the queue
+      for (int weight : boulders) {
+          boulderWeights.add(weight);
+      }
+
+      // Continuously smash boulders until fewer than 2 remain
+      while (boulderWeights.size() >= 2) {
+          // Extract the two heaviest boulders
+          int heaviest = boulderWeights.poll();
+          int secondHeaviest = boulderWeights.poll();
+
+          // Calculate the weight of the remaining boulder after smashing
+          int remainingWeight = heaviest - secondHeaviest;
+
+          // Add non-zero weight boulders back to the queue
+          if (remainingWeight != 0) {
+              boulderWeights.add(remainingWeight);
+          }
+      }
+      // Return the weight of the last remaining boulder, or 0 if no boulders are left
+      return boulderWeights.isEmpty() ? 0 : boulderWeights.peek();
   }
+
 
 
     /**
