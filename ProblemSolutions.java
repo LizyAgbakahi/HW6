@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Lizy Agbakahi COMP 400C Spring 2025
  *
  *   This java file contains the problem solutions for the methods lastBoulder,
  *   showDuplicates, and pair methods. You should utilize the Java Collection
@@ -168,10 +168,41 @@ public class ProblemSolutions {
      */
 
     public static ArrayList<String> pair(int[] input, int k) {
+        // Initializing an ArrayList to store the resulting pairs
+        ArrayList<String> result = new ArrayList<>();
 
-        //
-        //  YOUR CODE GOES HERE
-        //
-        return new ArrayList<>();  // Make sure returned lists is sorted as indicated above
+        // Initializing an ArrayList to keep track of numbers that have been checked
+        ArrayList<Integer> checkedNumbers = new ArrayList<>();
+
+        // Iterate through each number in the input array
+        for (int num : input) {
+            // Calculate the value needed to reach the sum k
+            int targetValue = k - num;
+
+            // Check if we've seen the target value in previous iterations
+            if (checkedNumbers.contains(targetValue)) {
+
+                // Format the pair with smaller number first to maintain order within the pair
+                int firstNum = Math.min(num, targetValue);
+                int secondNum = Math.max(num, targetValue);
+
+                // Create the pair and format as a string
+                String pairStr = "(" + firstNum + ", " + secondNum + ")";
+
+                // Check if pair exists before adding to prevent duplicates
+                if (!result.contains(pairStr)) {
+                    result.add(pairStr);
+                }
+            }
+
+            // Add current number to checked numbers
+            checkedNumbers.add(num);
+        }
+
+        // Sort the result at the end to ensure proper order of pairs
+        Collections.sort(result);
+
+        // Return the sorted list of pairs
+        return result;
     }
 }

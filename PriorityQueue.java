@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Lizy Agbakahi COMP 400C Spring 2025
  *
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
